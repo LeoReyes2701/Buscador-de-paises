@@ -17,6 +17,7 @@ let countries = [];
 // Funcion que pide todos los paises
 const getCountries = async () => {
   try {
+    
     const resp = await fetch('https://restcountries.com/v3.1/all',)
     if (resp){
       // Faltaba el await, se pone porque el json es una promesa
@@ -44,8 +45,12 @@ const getWeather = async (lat,lon) => {
 }
 
 searchInput.addEventListener('input', async e => { 
-  container.innerHTML=[]
-  container2.innerHTML=[]
+  
+  container.innerHTML=[];
+  
+  container2.innerHTML=[];
+  container.innerHTML = `<div class="loader"></div>`;
+  
   const filtered = countries.filter(country => {
     return country.name.common
       .toLowerCase()
@@ -53,9 +58,11 @@ searchInput.addEventListener('input', async e => {
   });
 
   if (filtered.length < 11 && searchInput != '' && filtered.length !=1) {
+    container.innerHTML='';
     container2.classList.remove('with-padding')
     // Mostrar los paises
     for (const country of filtered) {
+      
       const div = document.createElement('div');
       div.classList.add('country-first-info')
       div.innerHTML =  `
@@ -87,7 +94,7 @@ searchInput.addEventListener('input', async e => {
     <div class='one-country-h2'>
     <h1 class="nombre-pais">${pDePais.name.common}</h1>
     <h2>Capital: ${pDePais.capital}</h2>
-    <h2>Poblacion: ${pDePais.population}</h2>
+    <h2>Poblacion: ${pDePais.population.toLocaleString()}</h2>
     <h2>Continente: ${pDePais.region}</h2>
     <h2>Huso Horario: ${pDePais.timezones}</h2>
     <h2>Subcontinente: ${pDePais.subregion}</h2>
@@ -101,8 +108,9 @@ searchInput.addEventListener('input', async e => {
     
     </div>`
     container2.classList.add('with-padding');
+    container.innerHTML='';
   }
-
+  
 
 });
 
