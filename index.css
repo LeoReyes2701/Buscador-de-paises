@@ -25,12 +25,12 @@ input {
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   background-image: url(img-referencias/forma-planeta-tierra-3d.jpg);
   background-color: azure;
   background-repeat: no-repeat;
-  background-size: 185%;
-  object-fit: cover;
+  /* background-size: 185%; */
+  background-size: cover;
 }
 
 .main{
@@ -223,7 +223,6 @@ body {
   }
 
   body{
-    background-size: 500%;
     padding-bottom: 2rem;
   }
 
@@ -235,10 +234,6 @@ body {
 @media screen and (max-width: 820px){
   .country-first-info{
     width: 100%;
-  }
-
-  body{
-    background-size: 300%;
   }
 
   .container {
